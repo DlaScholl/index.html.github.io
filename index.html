@@ -1,0 +1,1121 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>История баскетбола</title>
+
+<style>
+:root {
+  --bg: #fff;
+  --panel: #f4f5f7;
+  --text: #202122;
+  --muted: #62676d;
+  --border: #c5c9ce;
+  --orange: #e87518;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+}
+
+header {
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  background: #f8f9fa;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.logo-ball {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #71350d;
+  background: #e87518;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-ball::before {
+  content: "";
+  position: absolute;
+  inset: -5px 8px;
+  border: 2px solid #54280b;
+  border-radius: 50%;
+}
+
+.logo-ball::after {
+  content: "";
+  position: absolute;
+  left: -5px;
+  right: -5px;
+  top: 17px;
+  border-top: 2px solid #54280b;
+}
+
+.football-link {
+  color: white;
+  background: #16743c;
+  text-decoration: none;
+  padding: 9px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.football-link:hover { background: #10592d; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 245px minmax(0, 1fr);
+  max-width: 1450px;
+  margin: auto;
+  min-height: calc(100vh - 75px);
+}
+
+.sidebar {
+  padding: 20px 15px;
+  border-right: 1px solid var(--border);
+}
+
+.sidebar h3 { margin-top: 0; }
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.menu button {
+  text-align: left;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 10px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.menu button:hover { background: #f1f3f5; }
+
+.menu button.active {
+  background: #eaf0fa;
+  border-color: #a8c0ed;
+  color: #174ea6;
+  font-weight: bold;
+}
+
+.sidebar-note {
+  margin-top: 24px;
+  padding: 12px;
+  background: var(--panel);
+  border: 1px solid #e0e2e5;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+main {
+  min-width: 0;
+  padding: 26px 32px 40px;
+}
+
+.breadcrumb {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+h1 {
+  font: bold clamp(30px, 4vw, 42px)/1.2 Georgia, serif;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+}
+
+h2 {
+  font: bold 25px Georgia, serif;
+  border-bottom: 1px solid #dfe1e5;
+  padding-bottom: 6px;
+  margin-top: 28px;
+}
+
+.lead { font-size: 17px; }
+
+.infobox {
+  float: right;
+  width: min(285px, 42%);
+  margin: 5px 0 18px 22px;
+  padding: 12px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.infobox-title {
+  text-align: center;
+  font-weight: bold;
+  background: #e8eaed;
+  padding: 7px;
+}
+
+.ball-illustration {
+  display: grid;
+  place-items: center;
+  min-height: 125px;
+  background: white;
+  margin: 10px 0;
+}
+
+.big-ball {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, #ffb15b, #ed781b 60%, #9b4008);
+  border: 3px solid #7a3508;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 95px 1fr;
+  gap: 6px;
+  padding: 6px 0;
+  border-top: 1px solid #d8dade;
+}
+
+.timeline {
+  border-left: 4px solid var(--orange);
+  padding-left: 18px;
+  margin: 22px 0;
+}
+
+.timeline-item {
+  padding-bottom: 14px;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--orange);
+  border: 2px solid white;
+  border-radius: 50%;
+  left: -25px;
+  top: 9px;
+}
+
+.year { font-weight: bold; color: #a64c0b; }
+
+.callout {
+  background: #fff8ed;
+  border-left: 4px solid var(--orange);
+  padding: 12px 15px;
+  margin: 20px 0;
+}
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border-top: 1px solid var(--border);
+  margin-top: 32px;
+  padding-top: 18px;
+}
+
+.pager button {
+  padding: 10px 14px;
+  border: 1px solid #aab0b7;
+  background: #f8f9fa;
+  color: #174ea6;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pager button:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+
+.page-counter {
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+.game-panel {
+  background: #f4f5f7;
+  border: 1px solid #d2d5da;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+.game-instructions {
+  color: #535960;
+  font-size: 14px;
+}
+
+.canvas-wrap {
+  width: 100%;
+  overflow: hidden;
+  border: 2px solid #414953;
+  border-radius: 7px;
+  background: #171c24;
+}
+
+#gameCanvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  touch-action: none;
+  cursor: grab;
+}
+
+#gameCanvas:active { cursor: grabbing; }
+
+.game-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.game-controls button {
+  background: #e87518;
+  color: white;
+  border: 0;
+  border-radius: 6px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.game-controls button:hover { background: #bd5b0c; }
+
+.game-controls .secondary { background: #444c58; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 13px;
+}
+
+.stat {
+  background: white;
+  border: 1px solid #d6d8dc;
+  border-radius: 7px;
+  padding: 8px;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 23px;
+  font-weight: bold;
+  color: #c45b0b;
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.game-message {
+  min-height: 25px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+footer {
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+  padding: 20px;
+}
+
+@media (max-width: 850px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .menu { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  main { padding: 20px 16px 35px; }
+}
+
+@media (max-width: 520px) {
+  .infobox { float: none; width: 100%; margin: 15px 0; }
+  .logo { font-size: 19px; }
+  header { padding: 13px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-ball"></div>
+    <span>История баскетбола</span>
+  </div>
+  <a class="football-link" href="https://www.fifa.com/" target="_blank" rel="noopener noreferrer">
+    ⚽ Сайт о футболе ↗
+  </a>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <h3>Содержание</h3>
+    <nav class="menu">
+      <button class="active" data-page="0">1. История баскетбола</button>
+      <button data-page="1">2. Создание игры</button>
+      <button data-page="2">3. Распространение</button>
+      <button data-page="3">4. Профессиональный спорт</button>
+      <button data-page="4">5. Олимпийский спорт</button>
+      <button data-page="5">6. Современность</button>
+      <button data-page="6">🎮 Мини-игра</button>
+    </nav>
+
+    <div class="sidebar-note">
+      <strong>Интересный факт</strong>
+      <p>Первые баскетбольные корзины были обычными корзинами для персиков.</p>
+    </div>
+  </aside>
+
+  <main>
+    <div class="breadcrumb" id="breadcrumb">Главная / История баскетбола</div>
+    <article id="content"></article>
+
+    <div class="pager">
+      <button id="prevBtn">← Предыдущая</button>
+      <button id="nextBtn">Следующая →</button>
+    </div>
+    <div class="page-counter" id="pageCounter"></div>
+  </main>
+</div>
+
+<footer>Учебный сайт об истории баскетбола · Интерактивная мини-игра</footer>
+
+<script>
+const pages = [
+{
+  title: "История баскетбола",
+  content: `
+    <p class="lead"><strong>Баскетбол</strong> — командная спортивная игра, в которой две команды стараются забросить мяч в корзину соперника.</p>
+    <div class="infobox">
+      <div class="infobox-title">Баскетбол</div>
+      <div class="ball-illustration"><div class="big-ball"></div></div>
+      <div class="info-row"><strong>Тип</strong><span>Командный спорт</span></div>
+      <div class="info-row"><strong>Создан</strong><span>1891 год</span></div>
+      <div class="info-row"><strong>Страна</strong><span>США</span></div>
+      <div class="info-row"><strong>Создатель</strong><span>Джеймс Нейсмит</span></div>
+      <div class="info-row"><strong>Игроков</strong><span>5 от каждой команды</span></div>
+    </div>
+    <p>Баскетбол является одним из самых популярных видов спорта в мире. В него играют в спортивных залах, на открытых площадках, в школах и профессиональных лигах.</p>
+    <h2>Как появилась игра</h2>
+    <p>История баскетбола началась в конце XIX века. Преподавателю физического воспитания Джеймсу Нейсмиту понадобилась новая активная игра для занятий зимой в помещении.</p>
+    <p>Он придумал правила, закрепил корзины на высоте и предложил игрокам забрасывать в них мяч. Со временем правила и оборудование изменились.</p>
+    <div class="callout"><strong>Главная идея:</strong> забросить мяч в корзину соперника с помощью передач, ведения и бросков.</div>
+    <h2>Основные этапы развития</h2>
+    <div class="timeline">
+      <div class="timeline-item"><div class="year">1891</div>Создание баскетбола Джеймсом Нейсмитом.</div>
+      <div class="timeline-item"><div class="year">1890-е годы</div>Игра распространяется в учебных заведениях.</div>
+      <div class="timeline-item"><div class="year">1936</div>Мужской баскетбол становится олимпийским видом спорта.</div>
+      <div class="timeline-item"><div class="year">1950</div>Первый чемпионат мира среди мужских сборных.</div>
+      <div class="timeline-item"><div class="year">Сегодня</div>Баскетбол развивается как профессиональный и любительский спорт.</div>
+    </div>`
+},
+{
+  title: "Создание игры",
+  content: `
+    <p class="lead">Баскетбол был придуман в декабре 1891 года преподавателем Джеймсом Нейсмитом в Спрингфилде, США.</p>
+    <h2>Почему понадобилась новая игра?</h2>
+    <p>Зимой ученикам требовалась активная игра для спортивного зала, которая развивала бы ловкость и учила работать в команде.</p>
+    <h2>Первые правила</h2>
+    <p>Нейсмит сформулировал тринадцать первоначальных правил. Игроки использовали футбольный мяч и корзины для персиков, закреплённые на балконах.</p>
+    <ul>
+      <li>Мяч можно было передавать партнёрам.</li>
+      <li>Игрокам запрещалось бежать с мячом в руках.</li>
+      <li>Для набора очков требовалось попасть в корзину.</li>
+      <li>Толчки и грубые столкновения ограничивались правилами.</li>
+    </ul>
+    <h2>Как менялась игра</h2>
+    <p>Первые корзины имели закрытое дно, и после попадания мяч приходилось доставать вручную. Позже появились кольца с сетками, щиты и специальные мячи.</p>
+    <div class="callout">Джеймс Нейсмит вошёл в историю как создатель баскетбола.</div>`
+},
+{
+  title: "Распространение баскетбола",
+  content: `
+    <p class="lead">После создания баскетбол начал распространяться за пределами первого спортивного зала.</p>
+    <h2>Первые годы</h2>
+    <p>Учителя физического воспитания и студенты знакомили с новой игрой другие школы и университеты. Простые правила помогли баскетболу быстро стать популярным.</p>
+    <h2>Распространение по миру</h2>
+    <ul>
+      <li>В учебных заведениях создавались команды.</li>
+      <li>Появлялись национальные соревнования.</li>
+      <li>Разрабатывались единые правила.</li>
+      <li>Начали формироваться международные спортивные связи.</li>
+    </ul>
+    <h2>Международная федерация</h2>
+    <p>В 1932 году была основана Международная федерация баскетбола FIBA. Она сыграла важную роль в развитии международных соревнований.</p>
+    <div class="callout">Распространение игры сделало возможными чемпионаты мира и олимпийские соревнования.</div>`
+},
+{
+  title: "Профессиональный баскетбол",
+  content: `
+    <p class="lead">С ростом популярности баскетбола появились профессиональные команды, национальные лиги и крупные турниры.</p>
+    <h2>НБА</h2>
+    <p>Национальная баскетбольная ассоциация NBA — одна из самых известных профессиональных лиг мира. Она была образована в США в 1946 году и получила нынешнее название в 1949 году.</p>
+    <h2>Звёзды баскетбола</h2>
+    <p>Среди известных игроков — Майкл Джордан, Мэджик Джонсон, Ларри Бёрд, Коби Брайант, Леброн Джеймс и Стефен Карри.</p>
+    <h2>Особенности профессионального спорта</h2>
+    <ul>
+      <li>Высокая физическая подготовка.</li>
+      <li>Сложные тактические схемы.</li>
+      <li>Профессиональные тренеры.</li>
+      <li>Регулярные чемпионаты и плей-офф.</li>
+      <li>Большая аудитория болельщиков.</li>
+    </ul>
+    <div class="callout">Профессиональный баскетбол сочетает скорость, точность, силу и командную тактику.</div>`
+},
+{
+  title: "Баскетбол на Олимпийских играх",
+  content: `
+    <p class="lead">Олимпийские соревнования стали важной частью истории международного баскетбола.</p>
+    <h2>Олимпийский дебют</h2>
+    <p>Мужской баскетбол вошёл в официальную программу летних Олимпийских игр в 1936 году в Берлине.</p>
+    <h2>Женский баскетбол</h2>
+    <p>Женский баскетбол стал олимпийским видом спорта в 1976 году на Играх в Монреале.</p>
+    <h2>Баскетбол 3×3</h2>
+    <p>В формате 3×3 команды играют по три человека на половине площадки с одной корзиной. Он стал олимпийским на Играх в Токио в 2020 году, проведённых в 2021 году.</p>
+    <div class="callout">Олимпийский баскетбол объединяет спортсменов разных стран.</div>`
+},
+{
+  title: "Современный баскетбол",
+  content: `
+    <p class="lead">Современный баскетбол — динамичная игра, в которой важны скорость, точность, физическая подготовка и тактика.</p>
+    <h2>Основные элементы</h2>
+    <ul>
+      <li><strong>Ведение:</strong> перемещение с мячом с помощью ударов об пол.</li>
+      <li><strong>Передача:</strong> перемещение мяча между партнёрами.</li>
+      <li><strong>Бросок:</strong> попытка забросить мяч в корзину.</li>
+      <li><strong>Подбор:</strong> борьба за мяч после промаха.</li>
+      <li><strong>Защита:</strong> действия против атаки соперника.</li>
+    </ul>
+    <h2>Технологии в спорте</h2>
+    <p>В профессиональном баскетболе используют видеоповторы, статистический анализ и системы отслеживания перемещений игроков.</p>
+    <h2>Уличный баскетбол</h2>
+    <p>Уличный баскетбол популярен благодаря доступности и свободному стилю игры. Известный формат 3×3 проводится на одну корзину.</p>
+    <div class="callout">Баскетбол продолжает развиваться и привлекает новых игроков по всему миру.</div>`
+},
+{
+  title: "Мини-игра: баскетбольный бросок",
+  game: true,
+  content: `
+    <p class="lead">Попробуй забросить мяч в кольцо! Щит и кольцо находятся слева. На площадке больше нет лишних барьеров.</p>
+    <div class="game-panel">
+      <h2 style="margin-top:0;border:0">🏀 Баскетбольная площадка</h2>
+      <p class="game-instructions">
+        Зажми мяч, потяни его вправо и немного вниз или вверх, затем отпусти.
+        Мяч полетит влево к кольцу. Чем дальше тянешь, тем сильнее бросок.
+      </p>
+      <div class="canvas-wrap">
+        <canvas id="gameCanvas" width="900" height="500"></canvas>
+      </div>
+      <div class="game-controls">
+        <button id="resetBall">Вернуть мяч</button>
+        <button id="autoShot" class="secondary">Автоматический бросок</button>
+        <button id="resetGame" class="secondary">Начать заново</button>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="stat-number" id="score">0</div><div class="stat-label">Очки</div></div>
+        <div class="stat"><div class="stat-number" id="hits">0</div><div class="stat-label">Попадания</div></div>
+        <div class="stat"><div class="stat-number" id="shots">0</div><div class="stat-label">Броски</div></div>
+      </div>
+      <div class="game-message" id="gameMessage">Потяни мяч вправо и отпусти!</div>
+    </div>
+    <h2>Как играть</h2>
+    <ol>
+      <li>Нажми на мяч справа.</li>
+      <li>Потяни его вправо, чтобы задать силу броска.</li>
+      <li>Отпусти мышь — мяч полетит влево.</li>
+      <li>Попробуй попасть в кольцо.</li>
+    </ol>
+    <div class="callout">В игре нет промежуточных барьеров. Мяч может свободно лететь через площадку к кольцу.</div>`
+}
+];
+
+let currentPage = 0;
+let gameCleanup = null;
+
+const content = document.getElementById("content");
+const breadcrumb = document.getElementById("breadcrumb");
+const menuButtons = [...document.querySelectorAll(".menu button")];
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const pageCounter = document.getElementById("pageCounter");
+
+function renderPage(index) {
+  if (index < 0 || index >= pages.length) return;
+
+  if (gameCleanup) {
+    gameCleanup();
+    gameCleanup = null;
+  }
+
+  currentPage = index;
+  const page = pages[index];
+
+  content.innerHTML = `<h1>${page.title}</h1>${page.content}`;
+  breadcrumb.textContent = "Главная / " + page.title;
+
+  menuButtons.forEach((button, i) => {
+    button.classList.toggle("active", i === index);
+  });
+
+  prevBtn.disabled = index === 0;
+  nextBtn.disabled = index === pages.length - 1;
+  pageCounter.textContent = `Страница ${index + 1} из ${pages.length}`;
+
+  if (page.game) gameCleanup = initGame();
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+menuButtons.forEach(button => {
+  button.addEventListener("click", () => renderPage(Number(button.dataset.page)));
+});
+
+prevBtn.addEventListener("click", () => renderPage(currentPage - 1));
+nextBtn.addEventListener("click", () => renderPage(currentPage + 1));
+
+function initGame() {
+  const canvas = document.getElementById("gameCanvas");
+  const ctx = canvas.getContext("2d");
+
+  const W = canvas.width;
+  const H = canvas.height;
+  const floorY = 445;
+  const radius = 17;
+
+  // Щит и кольцо слева, напротив стартового положения мяча.
+  const board = { x: 105, y: 175, w: 14, h: 100 };
+  const hoop = { x: 116, y: 278, w: 68, r: 5 };
+  const start = { x: 700, y: 340 };
+
+  let ball = { x: start.x, y: start.y, vx: 0, vy: 0, r: radius };
+  let dragging = false;
+  let dragX = ball.x;
+  let dragY = ball.y;
+  let moving = false;
+  let score = 0;
+  let hits = 0;
+  let shots = 0;
+  let scoredThisShot = false;
+  let message = "Зажми мяч, потяни вправо и отпусти!";
+  let animationId;
+  let lastTime = 0;
+
+  const scoreEl = document.getElementById("score");
+  const hitsEl = document.getElementById("hits");
+  const shotsEl = document.getElementById("shots");
+  const messageEl = document.getElementById("gameMessage");
+  const resetButton = document.getElementById("resetBall");
+  const autoButton = document.getElementById("autoShot");
+  const restartButton = document.getElementById("resetGame");
+
+  function setMessage(text) {
+    message = text;
+    messageEl.textContent = text;
+  }
+
+  function updateStats() {
+    scoreEl.textContent = score;
+    hitsEl.textContent = hits;
+    shotsEl.textContent = shots;
+    messageEl.textContent = message;
+  }
+
+  function drawCourt() {
+    const bg = ctx.createLinearGradient(0, 0, 0, H);
+    bg.addColorStop(0, "#293b4e");
+    bg.addColorStop(1, "#111923");
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+
+    // Верхняя и боковые стены. Никаких промежуточных барьеров.
+    ctx.fillStyle = "#f2f4f6";
+    ctx.fillRect(0, 0, W, 8);
+    ctx.fillRect(0, 0, 8, H);
+    ctx.fillRect(W - 8, 0, 8, H);
+
+    const floor = ctx.createLinearGradient(0, floorY, 0, H);
+    floor.addColorStop(0, "#bd753d");
+    floor.addColorStop(1, "#74401f");
+    ctx.fillStyle = floor;
+    ctx.fillRect(8, floorY, W - 16, H - floorY - 8);
+
+    for (let x = 15; x < W; x += 75) {
+      ctx.strokeStyle = "rgba(70,35,15,0.3)";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(x, floorY);
+      ctx.lineTo(x, H - 8);
+      ctx.stroke();
+    }
+
+    ctx.strokeStyle = "rgba(255,255,255,0.75)";
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(8, floorY);
+    ctx.lineTo(W - 8, floorY);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(450, floorY, 70, Math.PI, Math.PI * 2);
+    ctx.stroke();
+
+    // Щит с объёмным эффектом.
+    ctx.save();
+    ctx.shadowColor = "rgba(0,0,0,0.45)";
+    ctx.shadowBlur = 12;
+    ctx.shadowOffsetX = 4;
+    ctx.shadowOffsetY = 5;
+
+    const boardGradient = ctx.createLinearGradient(board.x, 0, board.x + board.w, 0);
+    boardGradient.addColorStop(0, "#c9d2da");
+    boardGradient.addColorStop(0.5, "#ffffff");
+    boardGradient.addColorStop(1, "#a9b4bf");
+
+    ctx.fillStyle = boardGradient;
+    ctx.fillRect(board.x, board.y, board.w, board.h);
+    ctx.restore();
+
+    ctx.strokeStyle = "#5a6570";
+    ctx.lineWidth = 3;
+    ctx.strokeRect(board.x, board.y, board.w, board.h);
+
+    ctx.strokeStyle = "#e87518";
+    ctx.lineWidth = 3;
+    ctx.strokeRect(board.x + 2, board.y + 29, 10, 36);
+
+    // Крепление обода.
+    ctx.strokeStyle = "#8b949e";
+    ctx.lineWidth = 5;
+    ctx.beginPath();
+    ctx.moveTo(board.x + board.w, hoop.y);
+    ctx.lineTo(hoop.x + 6, hoop.y);
+    ctx.stroke();
+
+    // Кольцо.
+    ctx.save();
+    ctx.shadowColor = "rgba(0,0,0,0.35)";
+    ctx.shadowBlur = 5;
+    ctx.strokeStyle = "#8c3511";
+    ctx.lineWidth = 9;
+    ctx.beginPath();
+    ctx.ellipse(hoop.x + hoop.w / 2, hoop.y + 3, hoop.w / 2, 8, 0, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.strokeStyle = "#ff6b23";
+    ctx.lineWidth = 5;
+    ctx.beginPath();
+    ctx.ellipse(hoop.x + hoop.w / 2, hoop.y, hoop.w / 2, 7, 0, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+
+    // Сетка.
+    ctx.strokeStyle = "#e7e9ed";
+    ctx.lineWidth = 1.5;
+
+    for (let i = 0; i <= 6; i++) {
+      const topX = hoop.x + 5 + i * (hoop.w - 10) / 6;
+      const bottomX = hoop.x + 14 + i * (hoop.w - 28) / 6;
+      ctx.beginPath();
+      ctx.moveTo(topX, hoop.y + 7);
+      ctx.lineTo(bottomX, hoop.y + 46);
+      ctx.stroke();
+    }
+
+    for (let i = 1; i <= 3; i++) {
+      const y = hoop.y + 7 + i * 10;
+      const width = hoop.w - 10 - i * 8;
+      ctx.beginPath();
+      ctx.moveTo(hoop.x + hoop.w / 2 - width / 2, y);
+      ctx.lineTo(hoop.x + hoop.w / 2 + width / 2, y);
+      ctx.stroke();
+    }
+
+    ctx.fillStyle = "#fff";
+    ctx.font = "bold 16px Arial";
+    ctx.textAlign = "center";
+    ctx.fillText("БРОСОК ВЛЕВО", W / 2, 35);
+    ctx.font = "13px Arial";
+    ctx.fillText("Перетащи мяч, чтобы прицелиться", W / 2, 58);
+  }
+
+  function drawBall() {
+    const shadowDistance = Math.max(0, floorY - ball.y);
+    ctx.fillStyle = "rgba(0,0,0,0.25)";
+    ctx.beginPath();
+    ctx.ellipse(ball.x + 4, floorY + 3, Math.max(10, 26 - shadowDistance * 0.03), 5, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    const gradient = ctx.createRadialGradient(
+      ball.x - 7, ball.y - 8, 2, ball.x, ball.y, ball.r
+    );
+    gradient.addColorStop(0, "#ffc477");
+    gradient.addColorStop(0.45, "#f58625");
+    gradient.addColorStop(0.8, "#d75c0e");
+    gradient.addColorStop(1, "#803507");
+
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.r - 1, 0, Math.PI * 2);
+    ctx.clip();
+
+    ctx.strokeStyle = "#542a0d";
+    ctx.lineWidth = 2;
+
+    ctx.beginPath();
+    ctx.moveTo(ball.x - ball.r, ball.y);
+    ctx.quadraticCurveTo(ball.x, ball.y - 6, ball.x + ball.r, ball.y);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(ball.x - 5, ball.y - ball.r);
+    ctx.bezierCurveTo(ball.x + 13, ball.y - 8, ball.x + 13, ball.y + 8, ball.x - 5, ball.y + ball.r);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(ball.x + 5, ball.y - ball.r);
+    ctx.bezierCurveTo(ball.x - 13, ball.y - 8, ball.x - 13, ball.y + 8, ball.x + 5, ball.y + ball.r);
+    ctx.stroke();
+
+    ctx.restore();
+
+    ctx.strokeStyle = "#6d3008";
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.arc(ball.x, ball.y, ball.r, 0, Math.PI * 2);
+    ctx.stroke();
+
+    if (dragging) {
+      // Линия показывает направление полёта, противоположное натяжению.
+      ctx.setLineDash([7, 6]);
+      ctx.strokeStyle = "#fff";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(ball.x, ball.y);
+      ctx.lineTo(dragX, dragY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      const aimX = ball.x - (dragX - ball.x) * 2;
+      const aimY = ball.y - (dragY - ball.y) * 2;
+
+      ctx.strokeStyle = "rgba(255,255,255,0.45)";
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(ball.x, ball.y);
+      ctx.lineTo(aimX, aimY);
+      ctx.stroke();
+    }
+  }
+
+  function draw() {
+    drawCourt();
+    drawBall();
+  }
+
+  function resetBall() {
+    ball = { x: start.x, y: start.y, vx: 0, vy: 0, r: radius };
+    dragging = false;
+    moving = false;
+    scoredThisShot = false;
+    setMessage("Зажми мяч, потяни вправо и отпусти!");
+    draw();
+  }
+
+  function shoot(vx, vy) {
+    ball.vx = vx;
+    ball.vy = vy;
+    moving = true;
+    dragging = false;
+    scoredThisShot = false;
+    shots++;
+    updateStats();
+    setMessage("Мяч летит к кольцу!");
+  }
+
+  function collideBoard() {
+    const nearestX = Math.max(board.x, Math.min(ball.x, board.x + board.w));
+    const nearestY = Math.max(board.y, Math.min(ball.y, board.y + board.h));
+    const dx = ball.x - nearestX;
+    const dy = ball.y - nearestY;
+
+    if (dx * dx + dy * dy < ball.r * ball.r) {
+      if (Math.abs(dx) > Math.abs(dy)) {
+        if (dx < 0) {
+          ball.x = board.x - ball.r;
+          ball.vx = -Math.abs(ball.vx) * 0.75;
+        } else {
+          ball.x = board.x + board.w + ball.r;
+          ball.vx = Math.abs(ball.vx) * 0.75;
+        }
+      } else {
+        if (dy < 0) {
+          ball.y = board.y - ball.r;
+          ball.vy = -Math.abs(ball.vy) * 0.75;
+        } else {
+          ball.y = board.y + board.h + ball.r;
+          ball.vy = Math.abs(ball.vy) * 0.75;
+        }
+      }
+    }
+  }
+
+  function collideHoop() {
+    const points = [
+      { x: hoop.x + 5, y: hoop.y },
+      { x: hoop.x + hoop.w - 5, y: hoop.y },
+      { x: hoop.x + hoop.w / 2, y: hoop.y + 5 }
+    ];
+
+    for (const p of points) {
+      const dx = ball.x - p.x;
+      const dy = ball.y - p.y;
+      const distance = Math.hypot(dx, dy);
+      const minDistance = ball.r + hoop.r;
+
+      if (distance < minDistance && distance > 0) {
+        const nx = dx / distance;
+        const ny = dy / distance;
+
+        ball.x = p.x + nx * minDistance;
+        ball.y = p.y + ny * minDistance;
+
+        const dot = ball.vx * nx + ball.vy * ny;
+        if (dot < 0) {
+          ball.vx -= 1.8 * dot * nx;
+          ball.vy -= 1.8 * dot * ny;
+          ball.vx *= 0.78;
+          ball.vy *= 0.78;
+        }
+      }
+    }
+  }
+
+  function update(dt) {
+    if (!moving || dragging) return;
+
+    const frames = Math.min(2, Math.max(0.5, dt / 16.67));
+    const oldX = ball.x;
+    const oldY = ball.y;
+
+    ball.vy += 0.18 * frames;
+    ball.x += ball.vx * frames;
+    ball.y += ball.vy * frames;
+
+    // Отскок от боковых стен.
+    if (ball.x - ball.r < 8) {
+      ball.x = 8 + ball.r;
+      ball.vx = Math.abs(ball.vx) * 0.8;
+    }
+
+    if (ball.x + ball.r > W - 8) {
+      ball.x = W - 8 - ball.r;
+      ball.vx = -Math.abs(ball.vx) * 0.8;
+    }
+
+    // Отскок от потолка.
+    if (ball.y - ball.r < 8) {
+      ball.y = 8 + ball.r;
+      ball.vy = Math.abs(ball.vy) * 0.8;
+    }
+
+    // Отскок от пола.
+    if (ball.y + ball.r > floorY) {
+      ball.y = floorY - ball.r;
+      ball.vy = -Math.abs(ball.vy) * 0.72;
+      ball.vx *= 0.94;
+
+      if (Math.abs(ball.vy) < 1.1) ball.vy = 0;
+
+      if (Math.abs(ball.vx) < 0.12 && Math.abs(ball.vy) < 0.12) {
+        moving = false;
+        setMessage("Бросок завершён. Попробуй ещё раз!");
+      }
+    }
+
+    collideBoard();
+    collideHoop();
+
+    // Засчитываем попадание, когда мяч пересекает уровень кольца сверху вниз.
+    const passedHoopLevel =
+      oldY < hoop.y &&
+      ball.y >= hoop.y &&
+      ball.vy > 0;
+
+    const insideHoop =
+      ball.x > hoop.x + 10 &&
+      ball.x < hoop.x + hoop.w - 10;
+
+    if (!scoredThisShot && passedHoopLevel && insideHoop) {
+      scoredThisShot = true;
+      score += 2;
+      hits++;
+      updateStats();
+      setMessage("🏀 ПОПАДАНИЕ! +2 очка");
+    }
+
+    // Если мяч улетел далеко за пределы площадки, возвращаем его.
+    if (ball.y > H + 100 || ball.x < -100 || ball.x > W + 100) {
+      moving = false;
+      setMessage("Мяч улетел за площадку. Нажми «Вернуть мяч».");
+    }
+  }
+
+  function loop(timestamp) {
+    if (!canvas.isConnected) return;
+
+    const dt = lastTime ? timestamp - lastTime : 16.67;
+    lastTime = timestamp;
+    update(dt);
+    draw();
+    animationId = requestAnimationFrame(loop);
+  }
+
+  function pointerPosition(event) {
+    const rect = canvas.getBoundingClientRect();
+    return {
+      x: (event.clientX - rect.left) * W / rect.width,
+      y: (event.clientY - rect.top) * H / rect.height
+    };
+  }
+
+  function pointerDown(event) {
+    if (moving) return;
+
+    const p = pointerPosition(event);
+    if (Math.hypot(p.x - ball.x, p.y - ball.y) <= ball.r + 12) {
+      dragging = true;
+      dragX = p.x;
+      dragY = p.y;
+      canvas.setPointerCapture(event.pointerId);
+      setMessage("Оттяни мяч вправо от кольца и отпусти!");
+      draw();
+      event.preventDefault();
+    }
+  }
+
+  function pointerMove(event) {
+    if (!dragging) return;
+    const p = pointerPosition(event);
+    dragX = p.x;
+    dragY = p.y;
+    draw();
+    event.preventDefault();
+  }
+
+  function pointerUp(event) {
+    if (!dragging) return;
+
+    const p = pointerPosition(event);
+    const pullX = p.x - ball.x;
+    const pullY = p.y - ball.y;
+
+    // Чем дальше оттянул мяч вправо, тем сильнее он полетит влево.
+    const vx = Math.max(-15, Math.min(15, -pullX * 0.095));
+    const vy = Math.max(-13, Math.min(13, -pullY * 0.095));
+
+    if (Math.hypot(vx, vy) < 1.2) {
+      dragging = false;
+      setMessage("Потяни мяч подальше, чтобы выполнить бросок.");
+      draw();
+      return;
+    }
+
+    shoot(vx, vy);
+    event.preventDefault();
+  }
+
+  function automaticShot() {
+    if (moving) return;
+
+    // Направляем мяч по дуге в сторону кольца.
+    const targetX = hoop.x + hoop.w / 2;
+    const targetY = hoop.y - 5;
+    const time = 43;
+
+    const vx = (targetX - ball.x) / time;
+    const vy = (targetY - ball.y - 0.5 * 0.18 * time * time) / time;
+
+    shoot(vx, vy);
+  }
+
+  function restartGame() {
+    score = 0;
+    hits = 0;
+    shots = 0;
+    updateStats();
+    resetBall();
+  }
+
+  resetButton.addEventListener("click", resetBall);
+  autoButton.addEventListener("click", automaticShot);
+  restartButton.addEventListener("click", restartGame);
+
+  canvas.addEventListener("pointerdown", pointerDown);
+  canvas.addEventListener("pointermove", pointerMove);
+  canvas.addEventListener("pointerup", pointerUp);
+  canvas.addEventListener("pointercancel", pointerUp);
+
+  updateStats();
+  draw();
+  animationId = requestAnimationFrame(loop);
+
+  return function cleanup() {
+    cancelAnimationFrame(animationId);
+    resetButton.removeEventListener("click", resetBall);
+    autoButton.removeEventListener("click", automaticShot);
+    restartButton.removeEventListener("click", restartGame);
+    canvas.removeEventListener("pointerdown", pointerDown);
+    canvas.removeEventListener("pointermove", pointerMove);
+    canvas.removeEventListener("pointerup", pointerUp);
+    canvas.removeEventListener("pointercancel", pointerUp);
+  };
+}
+
+renderPage(0);
+</script>
+</body>
+</html>
